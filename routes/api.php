@@ -14,4 +14,5 @@ Route::middleware('jwt')->group(function () {
 
     Route::get('/expenses', [ExpenseController::class, 'index']);
     Route::post('/expenses', [ExpenseController::class, 'store']);
+    Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
 });
