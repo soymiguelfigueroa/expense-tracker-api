@@ -17,21 +17,21 @@ class ExpenseController extends Controller
         switch ($request->get('filter_by')) {
             case 'last_week':
                 $currentDate = now();
-                $lastWeekDate = $currentDate->subWeek();
+                $lastWeekDate = now()->subWeek();
                 $expenses = Expense::whereBetween('date', [$lastWeekDate->toDateString(), $currentDate->toDateString()])
                     ->get();
                 break;
 
             case 'last_month':
                 $currentDate = now();
-                $lastMonthDate = $currentDate->subMonth();
+                $lastMonthDate = now()->subMonth();
                 $expenses = Expense::whereBetween('date', [$lastMonthDate->toDateString(), $currentDate->toDateString()])
                     ->get();
                 break;
 
             case 'last_three_months':
                 $currentDate = now();
-                $lastMonthDate = $currentDate->subMonths(3);
+                $lastMonthDate = now()->subMonths(3);
                 $expenses = Expense::whereBetween('date', [$lastMonthDate->toDateString(), $currentDate->toDateString()])
                     ->get();
                 break;
