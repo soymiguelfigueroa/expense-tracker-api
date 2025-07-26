@@ -68,19 +68,17 @@ class ExpenseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Expense $expense)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateExpenseRequest $request, Expense $expense)
     {
-        //
+        $validated = $request->validated();
+        $expense->title = $validated['title'] ?? $expense->title;
+        $expense->amount = $validated['amount'] ?? $expense->amount;
+        $expense->date = $validated['date'] ?? $expense->date;
+        $expense->category = $validated['category'] ?? $expense->category;
+        $expense->update();
+        return response()->json($expense);
     }
 
     /**
